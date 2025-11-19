@@ -47,6 +47,7 @@ with st.form(key='repartition_form'):
     submit = st.form_submit_button("Calculer avec la solution W-platform")  # Bouton de soumission pour ce formulaire
 
 # Calculs après soumission
+#KK
 if submit:
 
     somme_pct = proportion_blanc + proportion_rouge + proportion_rose
