@@ -1,6 +1,6 @@
 import streamlit as st
 
-# Configurer la page avec le thème Streamlit
+
 st.set_page_config(
     page_title="Répartition vin",
     layout="centered",
@@ -8,7 +8,14 @@ st.set_page_config(
     page_icon="🍷"
 )
 
-# Personnalisation du thème via le code directement (optionnel, mais plus simple)
+
+
+
+
+
+
+
+
 st.markdown("""
     <style>
     /* Personnalisation du curseur (slider) via le thème */
@@ -89,3 +96,29 @@ if submit:
 
     except:
         st.info("Graphique indisponible — installez pandas et matplotlib.")
+
+import pandas as pd
+import os
+
+
+fichier_excel = "reponses_vin.xlsx"
+
+nouvelle_ligne = {
+            "Zone": zone,
+            "Total litres": total_litres,
+            "Proportion blanc (%)": proportion_blanc,
+            "Proportion rouge (%)": proportion_rouge,
+            "Proportion rosé (%)": proportion_rose}
+
+        # Si le fichier existe déjà → on ajoute une ligne
+if os.path.exists(fichier_excel):
+    df_exist = pd.read_excel(fichier_excel)
+    df_nouveau = pd.concat([df_exist, pd.DataFrame([nouvelle_ligne])], ignore_index=True)
+    df_nouveau.to_excel(fichier_excel, index=False)
+
+else:
+    # Création du fichier avec la première ligne
+    df_nouveau = pd.DataFrame([nouvelle_ligne])
+    df_nouveau.to_excel(fichier_excel, index=False)
+
+    st.success("Données enregistrées dans le fichier Excel ✔️")
