@@ -40,7 +40,7 @@ with st.form(key='repartition_form'):
     )
 
     zone = st.selectbox(
-        "Zone géographique de production",
+        "Zone géographique de production de vin",
         ["Région - Nord", "Région - Sud", "Région - Est", "Région - Ouest", "Autre / Préciser"]
     )
     if zone == "Autre / Préciser":
